@@ -26,6 +26,22 @@ const TEST_COMMAND = {
   contexts: [0, 1, 2],
 };
 
+const ROLL_COMMAND = {
+  name: 'roll',
+  description: 'Roll some dice',
+  type: 1,
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+  options: [
+    {
+      type: 3,
+      name: 'dice',
+      description: "Dice Expression",
+      required: true,
+    }
+  ]
+}
+
 // Command containing options
 const CHALLENGE_COMMAND = {
   name: 'challenge',
@@ -44,6 +60,6 @@ const CHALLENGE_COMMAND = {
   contexts: [0, 2],
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND, ROLL_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
