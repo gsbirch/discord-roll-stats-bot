@@ -306,23 +306,23 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             // Delete message with token in request body
             const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
 
-            // let messageContent = "Stat Tracked: ";
+            let messageContent = "Stat Tracked: ";
             let trackType;
 
             if (componentId.startsWith('track_attack_miss_')) {
-                // messageContent += "Attack - Miss";
+                messageContent += "Attack - Miss";
                 trackType = StatType.Miss;
             }
             else if (componentId.startsWith('track_attack_hit_')) {
-                // messageContent += "Attack - Hit";
+                messageContent += "Attack - Hit";
                 trackType = StatType.Hit;
             }
             else if (componentId.startsWith('track_healing_')) {
-                // messageContent += "Healing";
+                messageContent += "Healing";
                 trackType = StatType.Healing;
             }
             else if (componentId.startsWith('track_damage_')) {
-                // messageContent += "Damage";
+                messageContent += "Damage";
                 trackType = StatType.DamageDealt;
             }
             // else {
@@ -332,19 +332,19 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
             registerRoll(userId, trackType);
 
-            // // Send results
-            // await res.send({
-            //     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            //     data: {
-            //         flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
-            //         components: [
-            //             {
-            //                 type: MessageComponentTypes.TEXT_DISPLAY,
-            //                 content: messageContent,
-            //             }
-            //         ]
-            //     },
-            // });
+            // Send results
+            await res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            content: messageContent,
+                        }
+                    ]
+                },
+            });
             // Delete stats menu
             DiscordRequest(endpoint, { method: 'DELETE' });
         }
