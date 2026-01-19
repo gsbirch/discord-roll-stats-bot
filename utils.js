@@ -85,7 +85,7 @@ export function generateStatsMenu(id) {
                         type: MessageComponentTypes.BUTTON,
                         // Append the game ID to use later on
                         custom_id: `track_damage_${id}`,
-                        label: 'Damage Roll',
+                        label: 'Damage',
                         style: ButtonStyleTypes.PRIMARY,
                     },
                 ],
