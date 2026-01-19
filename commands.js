@@ -74,24 +74,6 @@ const ROLL_COMMAND = genRollCommand('roll');
 
 const R_COMMAND = genRollCommand('r');
 
-// Command containing options
-const CHALLENGE_COMMAND = {
-    name: 'challenge',
-    description: 'Challenge to a match of rock paper scissors',
-    options: [
-        {
-            type: 3,
-            name: 'object',
-            description: 'Pick your object',
-            required: true,
-            choices: createCommandChallengeChoices(),
-        },
-    ],
-    type: 1,
-    integration_types: [0, 1],
-    contexts: [0, 2],
-};
-
 const SHOW_STAT_COMMAND = {
     name: 'showstats',
     description: 'Set whether or not the stats menu will show for you by default',
@@ -189,6 +171,6 @@ const DEAL_DAMAGE_COMMAND = {
     ],
 }
 
-const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND, ROLL_COMMAND, R_COMMAND, SHOW_STAT_COMMAND, STAT_MENU_COMMAND, BEGIN_COMMAND, END_COMMAND, PRINT_STATS_COMMAND, DEAL_DAMAGE_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, ROLL_COMMAND, R_COMMAND, SHOW_STAT_COMMAND, STAT_MENU_COMMAND, BEGIN_COMMAND, END_COMMAND, PRINT_STATS_COMMAND, DEAL_DAMAGE_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
