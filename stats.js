@@ -211,22 +211,22 @@ function resetLatestStats() {
 
 export function printEncounter() {
     return `**Rounds:** ${encounterRoundNumber}\n` +
-    `**Damage Dealt:** \n${formatDict(encounterStats_DamageDealt)}` +
-    `**Damage Taken:** \n${formatDict(encounterStats_DamageTaken)}` + 
-    `**Healing:** \n${formatDict(encounterStats_Healing)}` +
-    `**Accuracy:** \n${formatAccuracy(encounterStats_Hits, encounterStats_Miss)}` +
-    `**Damage Per Round:** \n${formatDictPerRound(encounterStats_DamageDealt, encounterRoundNumber)}` +
-    `**Enemy Saving Throw Percent:** \n${formatAccuracy(encounterStats_EnemySaving, encounterStats_EnemySavingFail)}`
+    `:dagger: **Damage Dealt:** \n${formatDict(encounterStats_DamageDealt)}` +
+    `:boom: **Damage Taken:** \n${formatDict(encounterStats_DamageTaken)}` + 
+    `:adhesive_bandage: **Healing:** \n${formatDict(encounterStats_Healing)}` +
+    `:dart: **Accuracy:** \n${formatAccuracy(encounterStats_Hits, encounterStats_Miss)}` +
+    `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(encounterStats_DamageDealt, encounterRoundNumber)}` +
+    `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(encounterStats_EnemySaving, encounterStats_EnemySavingFail)}`
 }
 
 export function printSession() {
     return `**Rounds:** ${sessionRounds}\n` +
-    `**Damage Dealt:** \n${formatDict(sessionStats_DamageDealt)}` +
-    `**Damage Taken:** \n${formatDict(sessionStats_DamageTaken)}` + 
-    `**Healing:** \n${formatDict(sessionStats_Healing)}` +
-    `**Accuracy:** \n${formatAccuracy(sessionStats_Hits, sessionStats_Miss)}` +
-    `**Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}`
-    `**Enemy Saving Throw Percent:** \n${formatAccuracy(sessionStats_EnemySaving, sessionStats_EnemySavingFail)}`
+    `:dagger: **Damage Dealt:** \n${formatDict(sessionStats_DamageDealt)}` +
+    `:boom: **Damage Taken:** \n${formatDict(sessionStats_DamageTaken)}` + 
+    `:adhesive_bandage: **Healing:** \n${formatDict(sessionStats_Healing)}` +
+    `:dart: **Accuracy:** \n${formatAccuracy(sessionStats_Hits, sessionStats_Miss)}` +
+    `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}`
+    `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(sessionStats_EnemySaving, sessionStats_EnemySavingFail)}`
 }
 
 function formatDict(dict) {
