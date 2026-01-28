@@ -292,6 +292,43 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                 },
             });
         }
+
+        if (name === 'enemysaving') {
+            // Interaction context
+            const context = req.body.context;
+            // User ID is in user field for (G)DMs, and member for servers
+            const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
+
+            let quantityText = "An enemy"
+            let emoji = ":check_mark:"
+            let outcome = "succeeded"
+            
+            const success = req.body.data.options[0].value;
+            const player = req.body.data.options[1].value;
+            let amount = req.body.data.options[2]?.value;
+            if (amount === undefined) amount = 1;
+            if (amount > 1) quantityText = `${amount} enemies`;
+            if (!success) {
+                emoji = ":cross_mark:";
+                outcome = "failed";
+            }
+
+            modifyStat(player, amount, success ? StatType.EnemySaving :  StatType.EnemySavingFail);
+            
+
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+                    components: [
+                        {
+                            type: MessageComponentTypes.TEXT_DISPLAY,
+                            content: `${emoji} ${quantityText} ${outcome} a saving throw from <@${player}>!`
+                        }
+                    ]
+                },
+            });
+        }
         console.error(`unknown command: ${name}`);
         return res.status(400).json({ error: 'unknown command' });
     }

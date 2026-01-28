@@ -98,6 +98,7 @@ const STAT_MENU_COMMAND = {
     contexts: [0, 1, 2],
 }
 
+
 const BEGIN_COMMAND = {
     name: 'begin',
     description: 'Begin a session/encounter/round',
@@ -171,6 +172,34 @@ const DEAL_DAMAGE_COMMAND = {
     ],
 }
 
-const ALL_COMMANDS = [TEST_COMMAND, ROLL_COMMAND, R_COMMAND, SHOW_STAT_COMMAND, STAT_MENU_COMMAND, BEGIN_COMMAND, END_COMMAND, PRINT_STATS_COMMAND, DEAL_DAMAGE_COMMAND];
+const ENEMY_SAVING_COMMAND = {
+    name: 'enemysaving',
+    description: 'Track the result of an enemy saving throw',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+    options: [
+        {
+            type: 5,
+            name: 'success',
+            description: "Whether enemy succeeded on saving throw",
+            required: true,
+        },
+        {
+            type: 6,
+            name: 'player',
+            description: 'Player to attribute stat to',
+            required: true,
+        },
+        {
+            type: 4,
+            name: 'amount',
+            description: 'Amount (to add multiple successes/failures)',
+            required: false,
+        },
+    ],
+}
+
+const ALL_COMMANDS = [ROLL_COMMAND, R_COMMAND, SHOW_STAT_COMMAND, STAT_MENU_COMMAND, BEGIN_COMMAND, END_COMMAND, PRINT_STATS_COMMAND, DEAL_DAMAGE_COMMAND, ENEMY_SAVING_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
