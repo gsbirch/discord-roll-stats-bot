@@ -332,19 +332,11 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             const userId = context === 0 ? req.body.member.user.id : req.body.user.id;
             registerRoll(userId, trackType);
 
-            // Send results
+            // Send ack, but don't send message
             await res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: {
-                    flags: InteractionResponseFlags.EPHEMERAL | InteractionResponseFlags.IS_COMPONENTS_V2,
-                    components: [
-                        {
-                            type: MessageComponentTypes.TEXT_DISPLAY,
-                            content: messageContent,
-                        }
-                    ]
-                },
+                type: InteractionResponseType.DEFERRED_UPDATE_MESSAGE
             });
+
             // Delete stats menu
             DiscordRequest(endpoint, { method: 'DELETE' });
         }
