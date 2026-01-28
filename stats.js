@@ -181,6 +181,7 @@ function resetSessionStats() {
     Object.keys(sessionStats_DamageDealt).forEach(k => sessionStats_DamageDealt[k] = 0);
     Object.keys(sessionStats_DamageTaken).forEach(k => sessionStats_DamageTaken[k] = 0);
     Object.keys(sessionStats_EnemySaving).forEach(k => sessionStats_EnemySaving[k] = 0);
+    Object.keys(sessionStats_EnemySavingFail).forEach(k => sessionStats_EnemySavingFail[k] = 0);
     Object.keys(sessionStats_Healing).forEach(k => sessionStats_Healing[k] = 0);
     Object.keys(sessionStats_Hits).forEach(k => sessionStats_Hits[k] = 0);
     Object.keys(sessionStats_Miss).forEach(k => sessionStats_Miss[k] = 0);
@@ -191,6 +192,7 @@ function resetEncounterStats() {
     Object.keys(encounterStats_DamageDealt).forEach(k => encounterStats_DamageDealt[k] = 0);
     Object.keys(encounterStats_DamageTaken).forEach(k => encounterStats_DamageTaken[k] = 0);
     Object.keys(encounterStats_EnemySaving).forEach(k => encounterStats_EnemySaving[k] = 0);
+    Object.keys(encounterStats_EnemySavingFail).forEach(k => encounterStats_EnemySavingFail[k] = 0);
     Object.keys(encounterStats_Healing).forEach(k => encounterStats_Healing[k] = 0);
     Object.keys(encounterStats_Hits).forEach(k => encounterStats_Hits[k] = 0);
     Object.keys(encounterStats_Miss).forEach(k => encounterStats_Miss[k] = 0);
@@ -201,6 +203,7 @@ function resetLatestStats() {
     latestStats_DamageDealt = {};
     latestStats_DamageTaken = {};
     latestStats_EnemySaving = {};
+    latestStats_EnemySavingFail = {};
     latestStats_Healing = {};
     latestStats_Hits = {};
     latestStats_Miss = {};
@@ -212,7 +215,8 @@ export function printEncounter() {
     `**Damage Taken:** \n${formatDict(encounterStats_DamageTaken)}` + 
     `**Healing:** \n${formatDict(encounterStats_Healing)}` +
     `**Accuracy:** \n${formatAccuracy(encounterStats_Hits, encounterStats_Miss)}` +
-    `**Damage Per Round:** \n${formatDictPerRound(encounterStats_DamageDealt, encounterRoundNumber)}`
+    `**Damage Per Round:** \n${formatDictPerRound(encounterStats_DamageDealt, encounterRoundNumber)}` +
+    `**Enemy Saving Throw Percent:** \n${formatAccuracy(encounterStats_EnemySaving, encounterStats_EnemySavingFail)}`
 }
 
 export function printSession() {
@@ -222,6 +226,7 @@ export function printSession() {
     `**Healing:** \n${formatDict(sessionStats_Healing)}` +
     `**Accuracy:** \n${formatAccuracy(sessionStats_Hits, sessionStats_Miss)}` +
     `**Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}`
+    `**Enemy Saving Throw Percent:** \n${formatAccuracy(sessionStats_EnemySaving, sessionStats_EnemySavingFail)}`
 }
 
 function formatDict(dict) {
