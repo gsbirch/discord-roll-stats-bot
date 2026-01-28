@@ -8,8 +8,7 @@ import {
     MessageComponentTypes,
     verifyKeyMiddleware,
 } from 'discord-interactions';
-import { getRandomEmoji, DiscordRequest, generateStatsMenu } from './utils.js';
-import { getShuffledOptions, getResult } from './game.js';
+import { DiscordRequest, generateStatsMenu } from './utils.js';
 import pkg from 'dice-roller-parser';
 import { trackRoll, StatType, registerRoll, beginSession, beginEncounter, beginRound, endSession, endEncounter, endRound, encounterRoundNumber, printEncounter, printSession, modifyStat } from './stats.js';
 const { DiceRoller, DiscordRollRenderer } = pkg;
@@ -18,8 +17,6 @@ const { DiceRoller, DiscordRollRenderer } = pkg;
 const app = express();
 // Get port, or default to 3000
 const PORT = process.env.PORT || 3000;
-// To keep track of our active games
-const activeGames = {};
 // dice roller
 const diceRoller = new DiceRoller();
 // discord renderer
@@ -49,25 +46,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
     */
     if (type === InteractionType.APPLICATION_COMMAND) {
         const { name } = data;
-        
-        // "test" command
-        if (name === 'test') {
-            // Send a message into the channel where command was triggered from
-            return res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: {
-                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-                    components: [
-                        {
-                            type: MessageComponentTypes.TEXT_DISPLAY,
-                            // Fetches a random emoji to send from a helper function
-                            content: `hello world ${getRandomEmoji()}`
-                        }
-                    ]
-                },
-            });
-        }
-        
+
         if (name === 'roll' || name === 'r') {
             // Interaction context
             const context = req.body.context;
