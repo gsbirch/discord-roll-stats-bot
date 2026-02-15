@@ -56,7 +56,14 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             // User's object choice
             const rollString = req.body.data.options[0].value;
 
-            let showValue = req.body.data.options[1]?.value;
+            let showValue = undefined;// = req.body.data.options[1]?.value;
+            if (req.body.data.options[1]?.name === "stats") {
+                showValue = req.body.data.options[1].value;
+            }
+            if (req.body.data.options[2]?.name === "stats") {
+                showValue = req.body.data.options[2].value;
+            }
+
             if (showValue === undefined) {
                 //console.log("setting hide value based on preference");
                 if (showDefault.has(userId)) {
@@ -67,7 +74,14 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                 }
             }
 
-            let scaleValue = req.body.data.options[2]?.value;
+            let scaleValue = undefined;
+            if (req.body.data.options[1]?.name === "scale") {
+                scaleValue = req.body.data.options[1].value;
+            }
+            if (req.body.data.options[2]?.name === "scale") {
+                scaleValue = req.body.data.options[2].value;
+            }
+
             if (scaleValue === undefined) scaleValue = 1;
             
             const roll = diceRoller.roll(rollString);
@@ -79,6 +93,10 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             trackRoll(userId, roll.value * scaleValue);
 
             const scaleString = `\n*Your result will be scaled by* \`${scaleValue}\` *in tracking*`
+
+            console.log(req.body.data.options[0]);
+            console.log(req.body.data.options[1]);
+            console.log(req.body.data.options[2]);
             
             // send a message with the rolled value
             let value = res.send({

@@ -1,5 +1,4 @@
 import 'dotenv/config';
-import { getRPSChoices } from './game.js';
 import { capitalize, InstallGlobalCommands } from './utils.js';
 
 // Get the game choices from game.js
@@ -200,6 +199,7 @@ const ENEMY_SAVING_COMMAND = {
     ],
 }
 
-const ALL_COMMANDS = [ROLL_COMMAND, R_COMMAND, SHOW_STAT_COMMAND, STAT_MENU_COMMAND, BEGIN_COMMAND, END_COMMAND, PRINT_STATS_COMMAND, DEAL_DAMAGE_COMMAND, ENEMY_SAVING_COMMAND];
+const ALL_COMMANDS = [ROLL_COMMAND, R_COMMAND, SHOW_STAT_COMMAND, STAT_MENU_COMMAND, BEGIN_COMMAND, 
+                        END_COMMAND, PRINT_STATS_COMMAND, DEAL_DAMAGE_COMMAND, ENEMY_SAVING_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

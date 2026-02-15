@@ -225,7 +225,7 @@ export function printSession() {
     `:boom: **Damage Taken:** \n${formatDict(sessionStats_DamageTaken)}` + 
     `:adhesive_bandage: **Healing:** \n${formatDict(sessionStats_Healing)}` +
     `:dart: **Accuracy:** \n${formatAccuracy(sessionStats_Hits, sessionStats_Miss)}` +
-    `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}`
+    `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}` +
     `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(sessionStats_EnemySaving, sessionStats_EnemySavingFail)}`
 }
 
