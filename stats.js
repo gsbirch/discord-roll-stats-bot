@@ -232,7 +232,7 @@ export function printSession() {
 function formatDict(dict) {
     let string = "";
     let entries = Object.entries(dict);
-    let sorted = entries.sort((a,b) => a[1] - b[1]);
+    let sorted = entries.sort((a,b) => b[1] - a[1]);
     for (let i = 0; i < sorted.length; i++) {
         string += `\t${i + 1}: <@${sorted[i][0]}> ${sorted[i][1]}\n`;
     }
@@ -242,7 +242,7 @@ function formatDict(dict) {
 function formatDictPerRound(dict, numRounds) {
     let string = "";
     let entries = Object.entries(dict);
-    let sorted = entries.sort((a,b) => a[1] - b[1]);
+    let sorted = entries.sort((a,b) => b[1] - a[1]);
     for (let i = 0; i < sorted.length; i++) {
         let perRound = sorted[i][1] / numRounds
         string += `\t${i + 1}: <@${sorted[i][0]}> ${parseFloat(perRound).toFixed(2)}\n`;
@@ -266,8 +266,8 @@ function formatAccuracy(dictHit, dictMiss) {
     }
     let hitEntries = Object.entries(dictHit);
     let missEntries = Object.entries(dictMiss);
-    let hitSorted = hitEntries.sort((a,b) => a[0] - b[0]);
-    let missSorted = missEntries.sort((a,b) => a[0] - b[0]);
+    let hitSorted = hitEntries.sort((a,b) => b[0] - a[0]);
+    let missSorted = missEntries.sort((a,b) => b[0] - a[0]);
     
     for (let i = 0; i < hitSorted.length; i++) {
         let accuracy = hitSorted[i][1] / (hitSorted[i][1] + missSorted[i][1]);
