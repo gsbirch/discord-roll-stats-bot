@@ -94,10 +94,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
             const scaleString = `\n*Your result will be scaled by* \`${scaleValue}\` *in tracking*`
 
-            console.log(req.body.data.options[0]);
-            console.log(req.body.data.options[1]);
-            console.log(req.body.data.options[2]);
-            
             // send a message with the rolled value
             let value = res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,

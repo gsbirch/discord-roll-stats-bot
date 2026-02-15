@@ -210,23 +210,51 @@ function resetLatestStats() {
 }
 
 export function printEncounter() {
-    return `**Rounds:** ${encounterRoundNumber}\n` +
-    `:dagger: **Damage Dealt:** \n${formatDict(encounterStats_DamageDealt)}` +
-    `:boom: **Damage Taken:** \n${formatDict(encounterStats_DamageTaken)}` + 
-    `:adhesive_bandage: **Healing:** \n${formatDict(encounterStats_Healing)}` +
-    `:dart: **Accuracy:** \n${formatAccuracy(encounterStats_Hits, encounterStats_Miss)}` +
-    `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(encounterStats_DamageDealt, encounterRoundNumber)}` +
-    `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(encounterStats_EnemySaving, encounterStats_EnemySavingFail)}`
+    let string = `**Rounds:** ${encounterRoundNumber}\n`;
+    if (Object.keys(encounterStats_DamageDealt).length > 0) {
+        string += `:dagger: **Damage Dealt:** \n${formatDict(encounterStats_DamageDealt)}`;
+    }
+    if (Object.keys(encounterStats_DamageTaken).length > 0) {
+        string += `:boom: **Damage Taken:** \n${formatDict(encounterStats_DamageTaken)}`;
+    }
+    if (Object.keys(encounterStats_Healing).length > 0) {
+        string += `:adhesive_bandage: **Healing:** \n${formatDict(encounterStats_Healing)}`;
+    }
+    if (Object.keys(encounterStats_Hits).length > 0 || Object.keys(encounterStats_Miss).length > 0) {
+        string += `:dart: **Accuracy:** \n${formatAccuracy(encounterStats_Hits, encounterStats_Miss)}`;
+    }
+    if (Object.keys(encounterStats_DamageDealt).length > 0) {
+        string += `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(encounterStats_DamageDealt, encounterRoundNumber)}`;
+    }
+    if (Object.keys(encounterStats_EnemySaving).length > 0 || Object.keys(encounterStats_EnemySavingFail).length > 0) {
+        string += `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(encounterStats_EnemySaving, encounterStats_EnemySavingFail)}`;
+    }
+
+    return string;
 }
 
 export function printSession() {
-    return `**Rounds:** ${sessionRounds}\n` +
-    `:dagger: **Damage Dealt:** \n${formatDict(sessionStats_DamageDealt)}` +
-    `:boom: **Damage Taken:** \n${formatDict(sessionStats_DamageTaken)}` + 
-    `:adhesive_bandage: **Healing:** \n${formatDict(sessionStats_Healing)}` +
-    `:dart: **Accuracy:** \n${formatAccuracy(sessionStats_Hits, sessionStats_Miss)}` +
-    `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}` +
-    `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(sessionStats_EnemySaving, sessionStats_EnemySavingFail)}`
+    let string = `**Rounds:** ${sessionRounds}\n`;
+    if (Object.keys(sessionStats_DamageDealt).length > 0) {
+        string += `:dagger: **Damage Dealt:** \n${formatDict(sessionStats_DamageDealt)}`;
+    }
+    if (Object.keys(sessionStats_DamageTaken).length > 0) {
+        string += `:boom: **Damage Taken:** \n${formatDict(sessionStats_DamageTaken)}`;
+    }
+    if (Object.keys(sessionStats_Healing).length > 0) {
+        string += `:adhesive_bandage: **Healing:** \n${formatDict(sessionStats_Healing)}`;
+    }
+    if (Object.keys(sessionStats_Hits).length > 0 || Object.keys(sessionStats_Miss).length > 0) {
+        string += `:dart: **Accuracy:** \n${formatAccuracy(sessionStats_Hits, sessionStats_Miss)}`;
+    }
+    if (Object.keys(sessionStats_DamageDealt).length > 0) {
+        string += `:crossed_swords: **Damage Per Round:** \n${formatDictPerRound(sessionStats_DamageDealt, sessionRounds)}`;
+    }
+    if (Object.keys(sessionStats_EnemySaving).length > 0 || Object.keys(sessionStats_EnemySavingFail).length > 0) {
+        string += `:goal: **Enemy Saving Throw Percent:** \n${formatAccuracy(sessionStats_EnemySaving, sessionStats_EnemySavingFail)}`;
+    }
+
+    return string;
 }
 
 function formatDict(dict) {
